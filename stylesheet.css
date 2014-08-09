@@ -1,0 +1,216 @@
+  body
+{
+	min-width:800px;
+    padding: 0;
+    margin: 0;
+	text-align:center;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+form
+{
+    width: 250px;
+    margin: 0 auto;
+}
+
+form.logreg input[type="text"], form.logreg input[type="password"], form.logreg input[type="email"]
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #E8E8E8 ;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: black;
+    outline: 0;
+}
+
+form.logreg input[type="submit"]
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+form.logreg input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+form.logreg .remember-forgot
+{
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+form.logreg .forgot-pass-content
+{
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form.logreg label, form.logreg a
+{
+    font-size: 12px;
+    font-weight: 400;
+    color: #454545;
+}
+
+form.logreg a
+{
+    transition: color 0.5s ease;
+}
+
+form.logreg a:hover
+{
+    color: #2ecc71;
+}
+
+.pr-wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.show-pass-reset
+{
+    display: block !important;
+}
+.panel-default {
+position:fixed;
+opacity:0;
+margin:auto;
+left: -200px;
+margin-left:50%;
+margin-top:90px;
+height:300px;
+width:400px;
+z-index:1501;
+}
+.pass-reset
+{
+    margin: 0 auto;
+    width: 250px;
+    position: relative;
+    margin-top: 22%;
+    z-index: 999;
+    background: #FFFFFF;
+    padding: 20px 15px;
+}
+
+.pass-reset label
+{
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+
+.pass-reset input[type="submit"]
+{
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.pass-reset input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+body
+{
+background-color: transparent;
+	background:url("photos/house.jpg") no-repeat center;
+	background-attachment: fixed;
+    background-size:cover;
+	min-height:1700px;
+
+	}
+#register
+{
+margin-left:10px;
+cursor:pointer;
+}
+
+#forgot
+{
+margin-left:5px;
+}
+#wrw
+{
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+	opacity:0;
+    z-index: -1;
+}
+#mainPage
+{
+	margin:auto;
+	margin-top:100px;
+	width:800px;
+	height:600px;
+	background-color:white;
+	opacity:0.5;
+	box-shadow:0px 0px 7px 0px gray;
+}
+.back
+{
+visibility: hidden;
+height:0;
+}
+#email
+{
+position:absolute;
+margin-top:0px;
+width:250px;
+margin-left:-250px;
+}
