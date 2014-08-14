@@ -40,6 +40,8 @@ if (isset($_SESSION['username']))
 </head>
 <body>
 <?php
+$(document).ready(function () 
+{
 		if (isset( $_SESSION['alert']))
 		{
 			echo 
@@ -50,6 +52,8 @@ if (isset($_SESSION['username']))
 			 echo "});</script>";
 			 unset($_SESSION['alert']);
 		}
+});
+		
 	?>
 	<!--this div is black weaper to make login page-->
 	<div id="wrw"></div>

@@ -15,7 +15,7 @@ session_start();
 		// Check connection
 
 		function getRandomString($length) {
-			$validCharacters = "abcdefghijklmnopqrstuxyvwzABCDEFGHIJKLMNOPQRSTUXYVWZ+-*#&@!?";
+			$validCharacters = "abcdefghijklmnopqrstuxyvwzABCDEFGHIJKLMNOPQRSTUXYVWZ+-123456789";
 			$validCharNumber = strlen($validCharacters);
 		 
 			$result = "";
@@ -38,15 +38,14 @@ session_start();
 			return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
 		  }
 		$str = getRandomString(25);
-		$strHashed = better_crypt();
-		
+		$strHashed = better_crypt($str);
 		mysqli_query($conn,"UPDATE ster_reg SET new_password='". $strHashed ."' WHERE email='" . $email . "'");
 		mysqli_close($conn);
 
 		$to      =  $email;
 		$subject = 'Reset your password';
 		$message = 'hello, to reset your password, please enter the following link:
-' . $str;
+' . "http://laurawharton.com/ster/phpCode/passwordreset.php?email=". $email . "&code=" .  $str;
 		$headers = 'From: noreply@whomii.com';
 
 		mail($to, $subject, $message, $headers);
