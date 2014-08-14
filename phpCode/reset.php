@@ -15,7 +15,7 @@ session_start();
 		// Check connection
 
 		function getRandomString($length) {
-			$validCharacters = "abcdefghijklmnopqrstuxyvwzABCDEFGHIJKLMNOPQRSTUXYVWZ+-123456789";
+			$validCharacters = "abcdefghijklmnopqrstuxyvwzABCDEFGHIJKLMNOPQRSTUXYVWZ123456789";
 			$validCharNumber = strlen($validCharacters);
 		 
 			$result = "";

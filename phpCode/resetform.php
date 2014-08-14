@@ -23,6 +23,9 @@ else if(isset($_POST['password']))
 	$password = better_crypt($password);
 	mysqli_query($conn,"UPDATE ster_reg SET password='". $password ."' WHERE email='" . $email . "'");
 	mysqli_close($conn);
+	unset($_SESSION['resetEmail']);
+	header("Location:../login.php");
+	exit();
 }
 ?>
 <html lang="en">

@@ -100,8 +100,8 @@ if (!isset($_SESSION['username']))
 
 								  <ul class="dropdown-menu" role="menu">
 									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else here</a></li>
+									<li id="changepass"><a>Change password</a></li>
+									<li id="changepic"><a href="#">Change profile picture</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"></li>
 									<li><a href="#">Settings</a></li>
@@ -113,7 +113,76 @@ if (!isset($_SESSION['username']))
 		  </div>
 		</div>
 	<!-- end of bootstraps menu -->
-	  
+	  		<div class="container">
+			<div class="row">
+			<div class="panel panel-default">
+				<div class="col-md-12">
+							
+
+
+					<div class="wrap">
+						<p class="form-title">
+							Sign In
+						</p>
+							
+						<form class="logreg" action="phpCode/signin.php" method="post">
+						<input name="password" type="password" placeholder="Password" />
+						<input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+						</form>
+						
+						
+						<form id="reg" class="logreg back" action="phpCode/register.php" method="post" enctype="multipart/form-data">
+<!--<input value="upload image" type="file" id="files" name="files" />-->
+<div id="fileupload" style="height:50px;">
+<input name ="photo" type="file" class="filestyle" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload image" id = "photo">
+<output id="list"></output>
+</div>
+
+<script>
+// The following script makes the photo that was chosen from form load next to it
+  function handleFileSelect(evt) {
+	$("#list").html("");
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('photo').addEventListener('change', handleFileSelect, false);
+</script>
+						
+						
+						
+						<input type="submit" value="change" class="btn btn-success btn-sm" />
+						</form>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--page will be loladed here-->
 		<div id="page">
 		</div>

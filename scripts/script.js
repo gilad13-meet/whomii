@@ -4,6 +4,7 @@ $(document).ready(function ()
 {
 	var swiched = false;
 	var onlogin = false;
+	var onindex = false;
 	// bootstrap code for login div
 		$('.register').click(function(event) 
 		{ 
@@ -54,5 +55,28 @@ $(document).ready(function ()
 			$(".logreg").removeClass("back");
 			$(".logreg").toggleClass("back");
 			$(".forgot").css({"visibility":"visible"});
+		});
+		
+		$("#changepass").click(function() 
+		{
+			onlogin = true;
+			$(".form-title").html("Change Password");
+			$("#wrw").css({"zIndex":"1500"});
+			$(".panel").css({"zIndex":"1501"});
+			$("#wrw").animate({"opacity":"0.9"}, 500);
+			$(".panel-default").animate({"opacity":"0.9"}, 500);
+			
+		});
+		$("#changepic").click(function() 
+		{
+			onlogin = true;
+			swiched = true;
+			$(".form-title").html("Change Picture");
+			$(".logreg").toggleClass("back");
+			$(".forgot").css({"visibility":"visible"});
+			$("#wrw").css({"zIndex":"1500"});
+			$(".panel").css({"zIndex":"1501"});
+			$("#wrw").animate({"opacity":"0.9"}, 500);
+			$(".panel-default").animate({"opacity":"0.9"}, 500);
 		});
 });

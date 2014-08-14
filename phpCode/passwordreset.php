@@ -10,6 +10,8 @@ if (!isset($_SESSION['username']))
 	}
 	$result = mysqli_query($conn, "SELECT new_password FROM ster_reg WHERE email='".$email. "'");
 	$row = mysqli_fetch_array($result);
+	echo $code . "<BR><BR>";
+	echo $email;
 	if (crypt($code,$row['new_password']) == $row['new_password'])
 	{
 		$_SESSION['resetEmail'] = $email;
@@ -18,9 +20,9 @@ if (!isset($_SESSION['username']))
 	}
 	else
 	{
-		echo "cool1";
+		echo "hi";
 		$_SESSION['alert'] = "Don't try me buddy!";
-		header("Location:../login.php");
+		//header("Location:../login.php");
 		exit();
 	}
 }
