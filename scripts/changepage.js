@@ -7,10 +7,9 @@ $(document).ready(function ()
 				var page = "pages/home.php";
 				var button = $(this);
 				$("#page").fadeTo(0, 0, function() {
-				$("#page").load(page);
-				$("#page").ready(function () 
+				$("#page").load(page, function () 
 				{
-					$("#page").fadeTo(500, 0.5);;
+					$("#page").fadeTo(500, 1);;
 				});
 				});
 				}
@@ -24,10 +23,9 @@ $(document).ready(function ()
 					$("#" + file).toggleClass("active");
 					var button = $(this);
 					$("#page").fadeTo(0, 0, function() {
-					$("#page").load(page);
-					$("#page").ready(function () 
+					$("#page").load(page,function () 
 					{
-					$("#page").fadeTo(500, 0.5);;
+					$("#page").fadeTo(500, 1);;
 					});
 					});
 				}
@@ -42,10 +40,9 @@ $(document).ready(function ()
 				button.toggleClass("active");
 				$("#page").fadeTo(500, 0, function() {
 				var name = "pages/" + $(button).attr('name') + ".php";
-				$("#page").load(name);
-				$("#page").ready(function () 
+				$("#page").load(name,function () 
 				{
-					$("#page").fadeTo(500, 0.5);;
+					$("#page").fadeTo(500, 1);;
 				});
 				var page = name;
 				var state = {

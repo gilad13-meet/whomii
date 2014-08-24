@@ -25,10 +25,33 @@
 		}
 		
 	}
+	
+
 	if (!$isFound)
 	{
-			mysqli_query($conn ,"INSERT INTO `ster_reg` (`username`, `name`, `password`, `email`)
-		VALUES ('$username', '$name', '$password', '$email')") or die(mysqli_error($conn)); 
+		function generateRandomString($length = 10) {
+			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, strlen($characters) - 1)];
+			}
+			return $randomString;
+		}
+		$notfoundpic = true;
+		while ($notfoundpic)
+		{
+			$picture = generateRandomString(20);
+			$result = mysqli_query($conn, "SELECT COUNT(picture) FROM ster_reg WHERE picture='".$picture. "'");
+			$notfoundpic = False;
+			while($row = mysqli_fetch_array($result)) {
+				if ($row[0]!=0)
+				{
+					$notfoundpic = True;
+				}
+				
+			}
+		}
+
 		$allowedExts = array("gif", "jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["photo"]["name"]);
 $extension = end($temp);
@@ -51,7 +74,10 @@ if ((($_FILES["photo"]["type"] == "image/gif")
     echo "Size: " . ($_FILES["photo"]["size"] / 1024) . " kB<br>";
     echo "Temp file: " . $_FILES["photo"]["tmp_name"] . "<br>";
 	$filetype = explode("/",$_FILES["photo"]["type"]);
-      move_uploaded_file($_FILES["photo"]["tmp_name"],"../photos/users/" . $username . "." . $filetype[1]); 
+	$picture .= "." . $filetype[1];
+	mysqli_query($conn ,"INSERT INTO `ster_reg` (`username`, `name`, `password`, `email`, `picture`)
+		VALUES ('$username', '$name', '$password', '$email', '$picture')") or die(mysqli_error($conn)); 
+      move_uploaded_file($_FILES["photo"]["tmp_name"],"../photos/users/" . $picture);
 	  }
 	  }
 	  else{
@@ -71,6 +97,7 @@ if ((($_FILES["photo"]["type"] == "image/gif")
 			 
 		    
 		$_SESSION['username'] = $username;
+		$_SESSION['add_answers'] = true;
 		$_SESSION['alert'] = "Welcome to stereotype.com! you are now register as " . $username . ".";
 		//print_r(explode("/",$_FILES["photo"]["type"]));
 		header("Location:../index.php");

@@ -211,20 +211,32 @@ position:absolute;
 		<tr style="text-align:left">
 		
 		<?php
-							$dir = "photos/users";
-							$dh  = opendir($dir);
-							while (false !== ($filename = readdir($dh))) {
-							  $files[] = $filename;
-							}
-							//now, do stuf with files
-							// take only 10 first files
-							foreach($files as $photo)
-							{
-									if ($photo!=".." and $photo!=".")
-									{
-									echo "<td style='display:inline-block;'><div style='margin-left:0px;width:50px;height:50px;background-image:url(photos/users/" . $photo . "); background-size: cover; background-position: 50%'/></td>";
-									}
-							}
+		include 'phpCode/sqlLogin.php';
+		$result = mysqli_query($conn, "SELECT COUNT(id) FROM ster_reg");
+		$row = mysqli_fetch_array($result);
+		$arr = array();
+		while (sizeof($arr)<15)
+		{
+			$num = rand(0, $row['0'] - 1);
+			$found = false;
+			foreach ($arr as $picNum)
+			{
+				if ($picNum==$num)
+				{
+					$found = true;
+				}
+			}
+			
+			if (!$found)
+			{
+				$arr[sizeof($arr)] = $num;
+				$result = mysqli_query($conn, "SELECT picture FROM ster_reg WHERE id='" . $num . "'");
+				$row = mysqli_fetch_array($result);
+				echo "<td style='display:inline-block;'><div style='margin-left:0px;width:50px;height:50px;background-image:url(photos/users/" . $row['picture'] . "); background-size: cover; background-position: 50%'/></td>";
+
+				
+			}
+		}
 		?>
 		
 		

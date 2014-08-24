@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<?PHP
-
+<?php
 session_start();
 if (!isset($_SESSION['username']))
 {
-		header("Location:login.php");
+		//header("Location:login.php");
+		//exit();
+}
+
+if (isset($_SESSION['add_answers']))
+{
+		header("Location:Pages/answer.php");
 		exit();
 }
 ?>
@@ -78,20 +82,10 @@ if (!isset($_SESSION['username']))
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
 			  			  <?php
-							$dir = "photos/users";
-							$dh  = opendir($dir);
-							while (false !== ($filename = readdir($dh))) {
-							  $files[] = $filename;
-							}
-							//now, do stuf with files
-							foreach($files as $photo)
-							{
-								$name = explode(".", $photo);
-								if ( $name[0] == $_SESSION['username'])
-								{
-									echo "<li><img id='headerphoto' src='photos/users/" . $photo . "'></li>";
-								}
-							}
+							include 'phpCode/sqlLogin.php';
+							$result = mysqli_query($conn, "SELECT picture FROM ster_reg WHERE username='" . $_SESSION['username'] . "'");
+							$row = mysqli_fetch_array($result);
+							echo "<li><img id='headerphoto' src='photos/users/" . $row['picture'] . "'></li>";
 							echo '							<li class="dropdown">
 							
 								  <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $_SESSION['username'] . '<span class="caret"></span></a>';
@@ -125,13 +119,14 @@ if (!isset($_SESSION['username']))
 							Sign In
 						</p>
 							
-						<form class="logreg" action="phpCode/signin.php" method="post">
-						<input name="password" type="password" placeholder="Password" />
+						<form class="logreg" action="phpCode/changepass.php" method="post">
+						<input name="oldpass" type="password" placeholder="Old password" />
+						<input name="password" type="password" placeholder="New password" />
 						<input type="submit" value="Sign In" class="btn btn-success btn-sm" />
 						</form>
 						
 						
-						<form id="reg" class="logreg back" action="phpCode/register.php" method="post" enctype="multipart/form-data">
+						<form id="reg" class="logreg back" action="phpCode/changepic.php" method="post" enctype="multipart/form-data">
 <!--<input value="upload image" type="file" id="files" name="files" />-->
 <div id="fileupload" style="height:50px;">
 <input name ="photo" type="file" class="filestyle" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload image" id = "photo">
@@ -159,7 +154,7 @@ if (!isset($_SESSION['username']))
         return function(e) {
           // Render thumbnail.
           var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+          span.innerHTML = ['<img class="uploadpic" src="', e.target.result,
                             '" title="', escape(theFile.name), '"/>'].join('');
           document.getElementById('list').insertBefore(span, null);
         };
@@ -175,7 +170,7 @@ if (!isset($_SESSION['username']))
 						
 						
 						
-						<input type="submit" value="change" class="btn btn-success btn-sm" />
+						<input type="submit" value="change" class="btn btn-success btn-sm"/>
 						</form>
 						
 						</div>
